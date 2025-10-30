@@ -1,0 +1,146 @@
+body {
+  background-color: #1b1918; /* Fundo escuro e elegante */
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ======== CONTAINER PRINCIPAL ======== */
+.card-custom {
+  display: flex;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.1);
+  max-width: 950px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 35px rgba(255, 255, 255, 0.15);
+}
+
+/* ======== IMAGEM ======== */
+.card-img {
+  flex: 1;
+  background-color: #2b2928;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.95);
+}
+
+/* ======== FORMULÁRIO ======== */
+.form-container {
+  flex: 1;
+  background: #f8f6f5;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 180px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* ======== TÍTULO ======== */
+h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: #cf6e55;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+/* ======== CAMPOS ======== */
+.form-group label {
+  font-weight: 600;
+  color: #3e3a37;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #c7bcb6;
+  padding: 10px;
+  transition: all 0.2s;
+  background-color: #fff;
+}
+
+.form-control:focus {
+  border-color: #e4977e;
+  box-shadow: 0 0 6px rgba(228, 151, 126, 0.6);
+  background-color: #fffaf9;
+}
+
+/* ======== BOTÃO ======== */
+#submit {
+  background-color: #e4977e;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+#submit:hover {
+  background-color: #cf6e55;
+  transform: scale(1.02);
+  box-shadow: 0 3px 10px rgba(207, 110, 85, 0.4);
+}
+
+/* ======== LINK DE LOGIN ======== */
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #4a403d;
+}
+
+.login-link a {
+  color: #cf6e55;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+  color: #e4977e;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+  .card-custom {
+    flex-direction: column;
+  }
+
+  .card-img {
+    height: 250px;
+  }
+
+  .form-container {
+    padding: 25px;
+  }
+
+  body {
+    background-color: #151312;
+  }
+}

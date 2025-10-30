@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil | Rafa Joias Folheadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/perfil.css">
+</head>
+<body>
+  <!-- ===== CABEÇALHO ===== -->
+  <header class="cabecalho">
+    <div class="bloco">
+      <a href="/" class="logo-link">
+        <img src="/img/Logo Elegante de Rafa Jóias.png" alt="Logo da empresa" class="logo">
+      </a>
+      <nav class="icones">
+        <a class="icon-btn2"  href="https://wa.me/5544988557658" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/128/5968/5968967.png" alt="WhatsApp"> </a>
+        <a href="/html/perfil.html" class="icon-btn"><img src="/img/perfil.png" alt="Perfil"></a>
+        <a href="/carrinho" class="icon-btn">
+          <img src="/img/carrinho.png" alt="Carrinho">
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== CARD PERFIL ===== -->
+  <main class="perfil-container">
+    <div class="perfil-card">
+      <div class="usuario">
+        <h2 id="nome">Carregando...</h2>
+      </div>
+
+      <div class="dados">
+        <p><strong>Email:</strong> <span id="email">—</span></p>
+        <p><strong>Telefone:</strong> <span id="telefone">—</span></p>
+       
+
+        <div class="botoes">
+          <button onclick="editarPerfil()">✏️ Editar Perfil</button>
+          <button onclick="sair()">🚪 Sair</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+async function carregarPerfil() {
+  try {
+    const res = await fetch('/api/perfil', { credentials: 'include' });
+    if (!res.ok) {
+      sessionStorage.setItem('redirectTo', '/html/perfil.html');
+      alert('Por favor, faça login.');
+      window.location.href = '/html/login.html';
+      return;
+    }
+
+    const data = await res.json();
+    const usuario = data.usuario;
+
+    document.getElementById('nome').textContent = usuario.nome || '—';
+    document.getElementById('email').textContent = usuario.email || '—';
+    document.getElementById('telefone').textContent = usuario.telefone || '—';
+
+  } catch (err) {
+    console.error('Erro ao carregar perfil:', err);
+    alert('Erro ao carregar perfil. Faça login novamente.');
+    window.location.href = '/html/login.html';
+  }
+}
+  function atualizarContadorCarrinho() {
+  const contador = document.getElementById('cart-count');
+  if (!contador) return;
+
+  // Pega o carrinho salvo no localStorage
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+  // Atualiza o número mostrado no ícone
+  contador.textContent = carrinho.length > 0 ? carrinho.length : 0;
+}
+
+// Atualiza automaticamente sempre que a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+  carregarPerfil();
+  atualizarContadorCarrinho();
+});
+
+
+async function sair() {
+  try {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    alert('Você saiu.');
+    window.location.href = '/html/login.html';
+  } catch (err) {
+    console.error('Erro ao sair:', err);
+    alert('Erro ao sair. Tente novamente.');
+  }
+}
+
+function editarPerfil() {
+  window.location.href = '/html/editar-perfil.html';
+}
+
+document.addEventListener('DOMContentLoaded', carregarPerfil);
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* ======== BASE ======== */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ======== FUNDO ======== */
+.background-image {
+  position: absolute;
+  inset: 0;
+  background-image: url(/img/ConjuntoAzul.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) blur(6px);
+  transform: scale(1.05);
+  z-index: -1;
+}
+
+/* ======== CONTAINER ======== */
+.login-container {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  padding: 40px 45px;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+  width: 340px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ======== LOGO ======== */
+.logo {
+  width: 120px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* ======== TEXTOS ======== */
+h1 {
+  font-family: 'Playfair Display', serif;
+  color: #cf6e55;
+  margin-bottom: 5px;
+  font-size: 26px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #5f524e;
+  margin-bottom: 25px;
+}
+
+/* ======== INPUTS ======== */
+.input-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  color: #4a403d;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c9bfb9;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #e4977e;
+  box-shadow: 0 0 5px rgba(228, 151, 126, 0.6);
+}
+
+/* ======== BOTÃO ======== */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #e4977e;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+button:hover {
+  background-color: #cf6e55;
+  transform: scale(1.02);
+  box-shadow: 0 3px 10px rgba(207, 110, 85, 0.4);
+}
+
+/* ======== LINK DE CADASTRO ======== */
+.signup-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #4a403d;
+}
+
+.signup-text a {
+  color: #cf6e55;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+  color: #e4977e;
+}
+
+/* ======== ANIMAÇÃO ======== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======== RESPONSIVO ======== */
+@media (max-width: 400px) {
+  .login-container {
+    width: 90%;
+    padding: 30px 25px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}

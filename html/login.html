@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Rafa Joias Folheadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <div class="login-container">
+    <img src="/img/logo branca.jpg" alt="Logo Rafa Joias Folheadas" class="logo">
+
+    <h1>Bem-vindo(a)!</h1>
+    <p class="subtitle">Entre para acessar sua conta</p>
+
+    <form id="login-form">
+      <div class="input-group">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" placeholder="Digite seu e-mail" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <p class="signup-text">
+      Não tem uma conta?
+      <a href="/html/cadastro.html">Cadastre-se aqui</a>
+    </p>
+  </div>
+
+  <script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById('username').value.trim();
+  const senha = document.getElementById('password').value;
+
+  try {
+    const resp = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ email, senha })
+    });
+
+    const data = await resp.json();
+
+    console.log('🔹 Status:', resp.status);
+    console.log('🔹 Resposta:', data);
+
+    if (resp.ok) {
+      alert('✅ Login bem-sucedido! Redirecionando...');
+      if (resp.ok) {
+      window.location.href = '/html/main.html'; // caminho relativo ao frontend
+}
+  }
+    else {
+      alert(`❌ Erro ${resp.status}: ${data.message || 'Falha no login'}`);
+    }
+  } catch (error) {
+    alert('Erro na conexão com o servidor.');
+    console.error(error);
+  }
+});
+</script>
+
+</body>
+</html>
