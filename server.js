@@ -9,19 +9,18 @@ import path from "path";
 import { fileURLToPath } from "url";
 import db from "./src/config/db.js";
 
-
-
 dotenv.config();
-
 const app = express();
 
 // ======= MIDDLEWARES =======
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 // ======= CAMINHOS =======
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +42,6 @@ async function testarConexao() {
   }
 }
 testarConexao();
-
 
 // ======= AUTENTICAÇÃO JWT =======
 function autenticar(req, res, next) {
@@ -87,18 +85,15 @@ app.post("/api/cadastro", async (req, res) => {
 // Login
 app.post("/api/login", async (req, res) => {
   const { email, senha } = req.body;
-  if (!email || !senha)
-    return res.status(400).json({ message: "Preencha todos os campos." });
+  if (!email || !senha) return res.status(400).json({ message: "Preencha todos os campos." });
 
   try {
     const [rows] = await db.query("SELECT * FROM usuarios WHERE email = ?", [email]);
-    if (rows.length === 0)
-      return res.status(401).json({ message: "Usuário não encontrado." });
+    if (rows.length === 0) return res.status(401).json({ message: "Usuário não encontrado." });
 
     const usuario = rows[0];
     const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
-    if (!senhaCorreta)
-      return res.status(401).json({ message: "Senha incorreta." });
+    if (!senhaCorreta) return res.status(401).json({ message: "Senha incorreta." });
 
     const token = jwt.sign(
       { id: usuario.id, nome: usuario.nome, email: usuario.email },
@@ -110,12 +105,12 @@ app.post("/api/login", async (req, res) => {
       httpOnly: true,
       secure: false,
       sameSite: "lax",
-      maxAge: 2 * 60 * 60 * 1000
+      maxAge: 2 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
       message: "Login realizado com sucesso!",
-      usuario: { id: usuario.id, nome: usuario.nome, email: usuario.email }
+      usuario: { id: usuario.id, nome: usuario.nome, email: usuario.email },
     });
   } catch (error) {
     console.error("❌ Erro no login:", error);

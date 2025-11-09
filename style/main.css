@@ -40,6 +40,24 @@ header.cabecalho {
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
+/* ===== DESCRIÇÃO DO PRODUTO ===== */
+.card .descricao {
+  font-size: 0.9rem;
+  color: #6a563e;
+  line-height: 1.4;
+  margin: 8px 0 12px;
+  font-weight: 500;
+  opacity: 0.85;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Melhor destaque no preço */
+.card .preco {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #4e361d;
+  margin-bottom: 4px;
+}
 
 .bloco {
   display: flex;
@@ -215,4 +233,42 @@ header.cabecalho {
 .prev:hover, .next:hover {
   background: linear-gradient(135deg, #f6d58f, #f2c874);
   transform: translateY(-50%) scale(1.15);
+}
+/* Animação suave para exibição */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rodape {
+  background: linear-gradient(135deg, #f7ebe2, #f2e0d8);
+  text-align: center;
+  padding: 25px 15px;
+  color: #3b2e1a;
+  font-size: 0.95rem;
+  margin-top: 60px;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.rodape .social a {
+  text-decoration: none;
+  color: #a17855;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.rodape .social a:hover {
+  color: #d4a86a;
+}
+
+
+/* Quando estiver em modo de busca */
+body.buscando .secao-produtos {
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }

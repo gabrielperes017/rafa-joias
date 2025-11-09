@@ -37,11 +37,16 @@
   </div>
 
   <script>
-document.getElementById('login-form').addEventListener('submit', async (e) => {
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const email = document.getElementById('username').value.trim();
-  const senha = document.getElementById('password').value;
+  const senha = document.getElementById('password').value.trim();
+
+  if (!email || !senha) {
+    alert('Preencha todos os campos.');
+    return;
+  }
 
   try {
     const resp = await fetch('/api/login', {
@@ -53,24 +58,29 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
     const data = await resp.json();
 
-    console.log('🔹 Status:', resp.status);
-    console.log('🔹 Resposta:', data);
-
     if (resp.ok) {
-      alert('✅ Login bem-sucedido! Redirecionando...');
-      if (resp.ok) {
-      window.location.href = '/html/main.html'; // caminho relativo ao frontend
-}
-  }
-    else {
+      // 🧹 Limpa qualquer login anterior
+      localStorage.removeItem('usuarioLogado');
+
+      // 💾 Salva o novo usuário logado
+      localStorage.setItem('usuarioLogado', JSON.stringify(data.usuario));
+
+      // ✨ Saudação com o primeiro nome
+      const primeiroNome = data.usuario.nome.split(' ')[0];
+      alert(`✅ Bem-vindo(a), ${primeiroNome}!`);
+      
+      // 🔁 Redireciona
+      window.location.href = '/html/main.html';
+    } else {
       alert(`❌ Erro ${resp.status}: ${data.message || 'Falha no login'}`);
     }
   } catch (error) {
-    alert('Erro na conexão com o servidor.');
-    console.error(error);
+    console.error('❌ Erro de conexão:', error);
+    alert('Erro ao conectar com o servidor.');
   }
 });
-</script>
+
+  </script>
 
 </body>
 </html>

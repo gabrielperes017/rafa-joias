@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rafa Joias Folheadas</title>
-  
+
   <!-- Fonte elegante -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
@@ -13,7 +13,7 @@
   <!-- ===== CABEÇALHO ===== -->
   <header class="cabecalho">
     <div class="bloco">
-      <a href="/" class="logo-link">
+      <a href="/" class="logo-link" style="text-decoration: none; color: inherit;">
         <img src="/img/Logo Elegante de Rafa Jóias.png" alt="Logo da Rafa Joias Folheadas" class="logo">
       </a>
 
@@ -23,72 +23,207 @@
       </form>
 
       <nav class="icones">
-      <a class="icon-btn2"  href="https://wa.me/5544988557658" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/128/5968/5968967.png" alt="WhatsApp"> </a>
-        <a href="/perfil" class="icon-btn" title="Perfil"><img src="/img/perfil.png" alt="Perfil"></a>
-        <a href="/carrinho" class="icon-btn" title="Carrinho">
+        <a class="icon-btn2" href="https://wa.me/5544988557658" target="_blank" style="text-decoration: none; color: inherit;">
+          <img src="https://cdn-icons-png.flaticon.com/128/5968/5968967.png" alt="WhatsApp">
+        </a>
+        <a href="/perfil" class="icon-btn" title="Perfil" style="text-decoration: none; color: inherit;">
+          <img src="/img/perfil.png" alt="Perfil">
+        </a>
+        <a href="/carrinho" class="icon-btn" title="Carrinho" style="text-decoration: none; color: inherit;">
           <img src="/img/carrinho.png" alt="Carrinho">
           <span class="cart-count" id="cart-count">0</span>
         </a>
-        <a href="#" class="icon-btn" title="Favoritos"><img src="/img/Favoritos.png" alt="Favoritos"></a>
+        <a href="#" class="icon-btn" title="Favoritos" style="text-decoration: none; color: inherit;">
+          <img src="/img/Favoritos.png" alt="Favoritos">
+        </a>
       </nav>
     </div>
   </header>
-
-  <!-- ===== SEÇÃO: Gargantilhas ===== -->
+<div class="produto" onclick="abrirDetalhes(produto)">
+  
+  
+    <!-- ===== SEÇÃO: Gargantilhas ===== -->
+    <section class="secao-produtos">
+      <h1 class="titulo">Gargantilhas</h1>
+      <div class="carrossel">
+        <button class="prev" type="button">&#10094;</button>
+        <div class="carrossel-transicao">
+  
+          <div class="card" data-nome="Gargantilha Rosé" data-preco="90" data-img="/img/gargantilhaRosé.jpeg">
+            <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+              <img src="/img/gargantilhaRosé.jpeg" alt="Gargantilha Rosé">
+              <h3>Gargantilha Rosé</h3>
+              <p class="preco">R$ 90,00</p>
+              <p class="descricao">Folheada a ouro rosé 18K • Corrente delicada e fecho ajustável.</p>
+            </a>
+            <button class="add-cart" type="button">Adicionar ao Carrinho</button>
+          </div>
+  
+          <div class="card" data-nome="Cordão Baiano" data-preco="120" data-img="/img/colarEstrela.jpeg">
+            <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+              <img src="/img/colarEstrela.jpeg" alt="Cordão Baiano">
+              <h3>Cordão Baiano</h3>
+              <p class="preco">R$ 120,00</p>
+              <p class="descricao">Modelo clássico trançado • Folheado a ouro 18K • Tamanho médio.</p>
+            </a>
+            <button class="add-cart" type="button">Adicionar ao Carrinho</button>
+          </div>
+  
+          <div class="card" data-nome="Gargantilha Prata" data-preco="90" data-img="/img/gargantilhaPrata.jpeg">
+            <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+              <img src="/img/gargantilhaPrata.jpeg" alt="Gargantilha Prata">
+              <h3>Gargantilha Prata</h3>
+              <p class="preco">R$ 90,00</p>
+              <p class="descricao">Prata folheada 925 • Corrente veneziana • Design minimalista.</p>
+            </a>
+            <button class="add-cart" type="button">Adicionar ao Carrinho</button>
+          </div>
+  
+        </div>
+        <button class="next" type="button">&#10095;</button>
+      </div>
+    </section>
+  
+    <!-- ===== SEÇÃO: Anéis ===== -->
+    <section class="secao-produtos">
+      <h1 class="titulo">Anéis</h1>
+      <div class="carrossel">
+        <button class="prev" type="button">&#10094;</button>
+        <div class="carrossel-transicao">
+  
+          <div class="card" data-nome="Anel Dourado" data-preco="70" data-img="/aneis/anelDourado.jpeg">
+            <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+              <img src="/aneis/anelDourado.jpeg" alt="Anel Dourado">
+              <h3>Anel Dourado</h3>
+              <p class="preco">R$ 70,00</p>
+              <p class="descricao">Folheado a ouro 18K • Design liso e elegante • Brilho intenso.</p>
+            </a>
+            <button class="add-cart" type="button">Adicionar ao Carrinho</button>
+          </div>
+  
+          <div class="card" data-nome="Anel Pedra Azul" data-preco="75" data-img="/aneis/anelPedraAzul.jpg">
+            <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+              <img src="/aneis/anelPedraAzul.jpg" alt="Anel Pedra Azul">
+              <h3>Anel Pedra Azul</h3>
+              <p class="preco">R$ 75,00</p>
+              <p class="descricao">Pedra zircônia azul • Base folheada em ouro • Acabamento fino.</p>
+            </a>
+            <button class="add-cart" type="button">Adicionar ao Carrinho</button>
+          </div>
+  
+          <div class="card" data-nome="Anel Verde Dourado" data-preco="80" data-img="/aneis/anelPedraVerde.jpg">
+            <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+              <img src="/aneis/anelPedraVerde.jpg" alt="Anel Pedra Verde">
+              <h3>Anel Pedra Verde</h3>
+              <p class="preco">R$ 80,00</p>
+              <p class="descricao">Pedra esmeralda sintética • Folheado dourado 18K • Brilho nobre.</p>
+            </a>
+            <button class="add-cart" type="button">Adicionar ao Carrinho</button>
+          </div>
+  
+        </div>
+        <button class="next" type="button">&#10095;</button>
+      </div>
+    </section>
   <section class="secao-produtos">
-    <h1 class="titulo">Gargantilhas</h1>
+    <h1 class="titulo">Brincos</h1>
     <div class="carrossel">
       <button class="prev" type="button">&#10094;</button>
       <div class="carrossel-transicao">
-        <div class="card" data-nome="Gargantilha Rosé" data-preco="90" data-img="/img/gargantilhaRosé.jpeg">
-          <img src="/img/gargantilhaRosé.jpeg" alt="Gargantilha Rosé">
-          <h3>Gargantilha Rosé</h3>
-          <p>R$ 90,00</p>
+  
+        <div class="card" 
+          data-nome="Brinco Pérola" 
+          data-preco="50" 
+          data-img="https://joiasgold.vteximg.com.br/arquivos/ids/212110-1000-1000/Brinco-de-Ouro-18K-Perola-Modelo-Gota-Pendurada-70mm-br20223-Joias-gold-modelo.jpg?v=637176396150930000">
+          <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+            <img src="https://joiasgold.vteximg.com.br/arquivos/ids/212110-1000-1000/Brinco-de-Ouro-18K-Perola-Modelo-Gota-Pendurada-70mm-br20223-Joias-gold-modelo.jpg?v=637176396150930000" alt="Brinco Pérola">
+            <h3>Brinco Pérola</h3>
+            <p class="preco">R$ 50,00</p>
+            <p class="descricao">Pérola sintética • Design de gota pendurada • Leve e sofisticado.</p>
+          </a>
           <button class="add-cart" type="button">Adicionar ao Carrinho</button>
         </div>
-
-        <div class="card" data-nome="Cordão Baiano" data-preco="120" data-img="/img/colarEstrela.jpeg">
-          <img src="/img/colarEstrela.jpeg" alt="Cordão Baiano">
-          <h3>Cordão Baiano</h3>
-          <p>R$ 120,00</p>
+  
+        <div class="card" 
+          data-nome="Brinco Pedra Azul" 
+          data-preco="55" 
+          data-img="https://maisejoias.bwimg.com.br/maisejoias/produtos/brinco-de-pedra-azul-com-design-de-gota-e-zirconias-folheado-a-ouro-18k-1689621417.133.jpg">
+          <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+            <img src="https://maisejoias.bwimg.com.br/maisejoias/produtos/brinco-de-pedra-azul-com-design-de-gota-e-zirconias-folheado-a-ouro-18k-1689621417.133.jpg" alt="Brinco Pedra Azul">
+            <h3>Brinco Azul</h3>
+            <p class="preco">R$ 55,00</p>
+            <p class="descricao">Pedra azul com zircônias • Folheado a ouro 18K • Estilo romântico.</p>
+          </a>
           <button class="add-cart" type="button">Adicionar ao Carrinho</button>
         </div>
-
-        <div class="card" data-nome="Gargantilha Prata" data-preco="90" data-img="/img/gargantilhaPrata.jpeg">
-          <img src="/img/gargantilhaPrata.jpeg" alt="Gargantilha Prata">
-          <h3>Gargantilha Prata</h3>
-          <p>R$ 90,00</p>
+  
+        <div class="card" 
+          data-nome="Brinco Argola" 
+          data-preco="60" 
+          data-img="https://images.tcdn.com.br/img/img_prod/1315898/brinco_argola_media_1_fileira_cravejada_com_microzirconias_dourado_293_2_1aba485c2de7734b9f2769f5dc0eaab6.jpg">
+          <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+            <img src="https://images.tcdn.com.br/img/img_prod/1315898/brinco_argola_media_1_fileira_cravejada_com_microzirconias_dourado_293_2_1aba485c2de7734b9f2769f5dc0eaab6.jpg" alt="Brinco Argola">
+            <h3>Brinco Argola</h3>
+            <p class="preco">R$ 60,00</p>
+            <p class="descricao">Argola cravejada com microzircônias • Folheado dourado • Toque moderno.</p>
+          </a>
           <button class="add-cart" type="button">Adicionar ao Carrinho</button>
         </div>
+  
       </div>
       <button class="next" type="button">&#10095;</button>
     </div>
   </section>
-
-  <!-- ===== SEÇÃO: Anéis ===== -->
+  
+  
+    <!-- ===== SEÇÃO: Pulseiras ===== -->
   <section class="secao-produtos">
-    <h1 class="titulo">Anéis</h1>
+    <h1 class="titulo">Pulseiras</h1>
     <div class="carrossel">
       <button class="prev" type="button">&#10094;</button>
       <div class="carrossel-transicao">
-        <div class="card" data-nome="Anel Dourado" data-preco="70" data-img="/aneis/anelDourado.jpeg">
-          <img src="/aneis/anelDourado.jpeg" alt="Anel Dourado">
-          <h3>Anel Dourado</h3>
-          <p>R$ 70,00</p>
+  
+        <div class="card" 
+          data-nome="Pulseira Dourada Fina" 
+          data-preco="65"
+          data-img="https://imgmarketplace.lojasrenner.com.br/20001/4672/7010703632316/7510707163932/1.jpeg">
+          <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+            <img src="https://imgmarketplace.lojasrenner.com.br/20001/4672/7010703632316/7510707163932/1.jpeg" alt="Pulseira Dourada Fina">
+            <h3>Pulseira Dourada</h3>
+            <p class="preco">R$ 65,00</p>
+            <p class="descricao">Folheada a ouro 18K • Corrente delicada e elegante • Tamanho ajustável.</p>
+          </a>
           <button class="add-cart" type="button">Adicionar ao Carrinho</button>
         </div>
-
-        <div class="card" data-nome="Anel Pedra Azul" data-preco="75" data-img="/aneis/anelPedraAzul.jpg">
-          <img src="/aneis/anelPedraAzul.jpg" alt="Anel Pedra Azul">
-          <h3>Anel Pedra Azul</h3>
-          <p>R$ 75,00</p>
+  
+        <div class="card" 
+          data-nome="Pulseira Prata" 
+          data-preco="70"
+          data-img="https://images.tcdn.com.br/img/img_prod/770996/pulseira_de_prata_veneziana_bolinhas_19cm_273_2_89e02d1ce4b9c4907577c5fb039c3123.jpg">
+          <a href="/html/paginaProduto.html" style="text-decoration: none; color: inherit;">
+            <img src="https://images.tcdn.com.br/img/img_prod/770996/pulseira_de_prata_veneziana_bolinhas_19cm_273_2_89e02d1ce4b9c4907577c5fb039c3123.jpg" alt="Pulseira Prata">
+            <h3>Pulseira Prata</h3>
+            <p class="preco">R$ 70,00</p>
+            <p class="descricao">Prata folheada 925 • Bolinhas delicadas • Ideal para o dia a dia.</p>
+          </a>
           <button class="add-cart" type="button">Adicionar ao Carrinho</button>
         </div>
+  
       </div>
       <button class="next" type="button">&#10095;</button>
     </div>
   </section>
+</div>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <p>© 2025 Rafa Joias Folheadas • Cianorte - PR</p>
+    <div class="social">
+      <a href="https://wa.me/5544988557658" target="_blank">WhatsApp</a> |
+      <a href="https://www.instagram.com/rafa.folheados_/" target="_blank">Instagram</a> |
+      <a href="mailto:contato@rafajoias.com">E-mail</a>
+    </div>
+  </footer>
 
   <script src="/js/main.js"></script>
 </body>

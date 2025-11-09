@@ -1,0 +1,211 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8f6f3;
+  margin: 0;
+  color: #2b2b2b;
+}
+
+/* ====== Botão Voltar ====== */
+.btn-voltar {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 18px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background-color: #3a3a3a;
+}
+
+/* ====== Container Principal ====== */
+.produto-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+/* ====== Imagem do Produto ====== */
+.imagem-produto {
+  position: relative;
+  flex: 1;
+  min-width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem-produto img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ====== Botão Favorito ====== */
+.favorito-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.favorito-btn:hover {
+  background: #ece8e4;
+  transform: scale(1.1);
+}
+
+.favorito-btn img {
+  width: 60%;
+  height: 60%;
+}
+
+/* ====== Detalhes do Produto ====== */
+.detalhes-produto {
+  flex: 1;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Nome do Produto */
+#nome-produto {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+}
+
+/* Preços */
+.preco {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+}
+
+.preco-antigo {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.preco-atual {
+  font-weight: 700;
+  color: #8b6f47;
+}
+
+.desconto {
+  background: #d7ccc0;
+  color: #3a3a3a;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* ====== Botão Adicionar à Sacola ====== */
+.btn-sacola {
+  padding: 16px;
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.btn-sacola:hover {
+  background: #3a3a3a;
+}
+
+.btn-sacola.clicado {
+  transform: scale(0.97);
+}
+
+/* ====== Notificação simples ====== */
+.notificacao {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #f5d7b4;
+  color: #4b3b2b;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+.notificacao.mostrar {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ====== Responsivo ====== */
+@media (max-width: 768px) {
+  .produto-container {
+    flex-direction: column;
+    padding: 30px 10px;
+  }
+
+  .imagem-produto img,
+  .detalhes-produto {
+    max-width: 100%;
+  }
+
+  .btn-voltar {
+    margin: 15px;
+    padding: 8px 15px;
+  }
+}
+
+/* Preços */
+.preco {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+}
+
+.preco-antigo {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.preco-atual {
+  font-weight: 700;
+  color: #cfa36d;
+}
+
+.desconto {
+  background: #f5d7b4;
+  color: #4b3b2b;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+}

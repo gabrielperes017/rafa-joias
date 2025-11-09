@@ -35,12 +35,13 @@
       </div>
 
       <div class="dados">
-        <p><strong>Email:</strong> <span id="email">—</span></p>
-        <p><strong>Telefone:</strong> <span id="telefone">—</span></p>
+        <p><strong>Email:</strong> <span id="email-display">—</span><input type="email" id="email-edit" style="display:none;"></p>
        
 
         <div class="botoes">
-          <button onclick="editarPerfil()">✏️ Editar Perfil</button>
+          <button id="edit-btn" onclick="editarPerfil()">✏️ Editar Perfil</button>
+          <button id="save-btn" onclick="salvarPerfil()" style="display:none;">💾 Salvar</button>
+          <button id="cancel-btn" onclick="cancelarEdicao()" style="display:none;">❌ Cancelar</button>
           <button onclick="sair()">🚪 Sair</button>
         </div>
       </div>
@@ -48,6 +49,8 @@
   </main>
 
 <script>
+let originalData = {}; // Para armazenar os dados originais para cancelar
+
 async function carregarPerfil() {
   try {
     const res = await fetch('/api/perfil', { credentials: 'include' });
@@ -62,8 +65,13 @@ async function carregarPerfil() {
     const usuario = data.usuario;
 
     document.getElementById('nome').textContent = usuario.nome || '—';
-    document.getElementById('email').textContent = usuario.email || '—';
-    document.getElementById('telefone').textContent = usuario.telefone || '—';
+    document.getElementById('email-display').textContent = usuario.email || '—';
+
+    // Armazenar dados originais
+    originalData = {
+      nome: usuario.nome || '',
+      email: usuario.email || ''
+    };
 
   } catch (err) {
     console.error('Erro ao carregar perfil:', err);
@@ -71,7 +79,8 @@ async function carregarPerfil() {
     window.location.href = '/html/login.html';
   }
 }
-  function atualizarContadorCarrinho() {
+
+function atualizarContadorCarrinho() {
   const contador = document.getElementById('cart-count');
   if (!contador) return;
 
@@ -88,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
   atualizarContadorCarrinho();
 });
 
-
 async function sair() {
   try {
     await fetch('/api/logout', { method: 'POST', credentials: 'include' });
@@ -101,7 +109,59 @@ async function sair() {
 }
 
 function editarPerfil() {
-  window.location.href = '/html/editar-perfil.html';
+  // Entrar em modo edição
+  document.getElementById('email-display').style.display = 'none';
+  document.getElementById('email-edit').style.display = 'inline';
+
+  // Preencher input com valor atual
+  document.getElementById('email-edit').value = originalData.email;
+
+  // Alternar botões
+  document.getElementById('edit-btn').style.display = 'none';
+  document.getElementById('save-btn').style.display = 'inline';
+  document.getElementById('cancel-btn').style.display = 'inline';
+}
+
+async function salvarPerfil() {
+  const email = document.getElementById('email-edit').value.trim();
+
+  // Validação básica
+  if (!email) {
+    alert('Por favor, preencha o email.');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/perfil', {
+      method: 'PUT', // Assumindo que a API suporta PUT para atualização
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ email })
+    });
+
+    if (!res.ok) {
+      throw new Error('Erro ao salvar perfil');
+    }
+
+    alert('Perfil atualizado com sucesso!');
+    cancelarEdicao(); // Voltar ao modo visualização
+    carregarPerfil(); // Recarregar dados
+
+  } catch (err) {
+    console.error('Erro ao salvar perfil:', err);
+    alert('Erro ao salvar perfil. Tente novamente.');
+  }
+}
+
+function cancelarEdicao() {
+  // Voltar ao modo visualização
+  document.getElementById('email-display').style.display = 'inline';
+  document.getElementById('email-edit').style.display = 'none';
+
+  // Alternar botões
+  document.getElementById('edit-btn').style.display = 'inline';
+  document.getElementById('save-btn').style.display = 'none';
+  document.getElementById('cancel-btn').style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', carregarPerfil);

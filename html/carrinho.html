@@ -6,6 +6,7 @@
   <title>Carrinho - Rafa Joias Folheadas</title>
   <link rel="stylesheet" href="/css/carrinho.css">
 </head>
+
 <body>
   <h1>🛍️ Seu Carrinho</h1>
 
@@ -14,60 +15,120 @@
     <div class="total" id="total"></div>
 
     <div class="botoes">
-      <button id="voltar" class="btn" onclick="window.location.href='/'">⬅️ Voltar à Loja</button>
-      <button id="limpar" class="btn">🗑️ Limpar Carrinho</button>
-      <a class="whatsapp-btn" href="https://wa.me/5544988557658" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/128/5968/5968967.png" alt="WhatsApp"> Negociar pelo WhatsApp
-      </a>
+      <button class="btn" onclick="window.location.href='/'">⬅️ Voltar à Loja</button>
+      <button class="btn" id="limpar">🗑️ Limpar Carrinho</button>
+
+      <button class="whatsapp-btn" id="enviar-whatsapp">
+        <img src="https://cdn-icons-png.flaticon.com/128/5968/5968967.png" alt="WhatsApp">
+        Negociar pelo WhatsApp
+      </button>
     </div>
   </div>
 
   <script>
-    const container = document.getElementById('itens');
-    const totalEl = document.getElementById('total');
-    const limparBtn = document.getElementById('limpar');
+    // =====================================
+    // 🔹 Funções auxiliares
+    // =====================================
+    const obterCarrinho = () => JSON.parse(localStorage.getItem('carrinho')) || [];
+    const salvarCarrinho = carrinho => localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
+    const obterUsuario = () => {
+      const usuarioLogado = localStorage.getItem('usuarioLogado');
+      const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios')) || [];
+      return usuarioLogado ? JSON.parse(usuarioLogado) : usuariosSalvos.at(-1) || null;
+    };
+
+    // =====================================
+    // 🔹 Atualização da interface
+    // =====================================
     function atualizarCarrinho() {
-      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const container = document.getElementById('itens');
+      const totalEl = document.getElementById('total');
+      const carrinho = obterCarrinho();
+
       container.innerHTML = '';
       let total = 0;
 
       if (carrinho.length === 0) {
-        container.innerHTML = '<p style="text-align:center; font-size:1.2rem; color:#888;">Seu carrinho está vazio 😢</p>';
+        container.innerHTML = `<p style="text-align:center; font-size:1.2rem; color:#888;">Seu carrinho está vazio 😢</p>`;
         totalEl.textContent = '';
         return;
       }
 
       carrinho.forEach((produto, index) => {
-        let imgSrc = produto.img || '';
         const item = document.createElement('div');
         item.classList.add('item');
+
+        // ✅ Corrigido: pega imagem do campo correto
+        const imagem = produto.img || produto.imagem || 'https://via.placeholder.com/100';
+
         item.innerHTML = `
-          <img src="${imgSrc}" alt="${produto.nome}">
-          <span>${produto.nome}</span>
-          <span>R$ ${produto.preco.toFixed(2)}</span>
-          <button onclick="removerItem(${index})">Remover</button>
+          <img src="${imagem}" alt="${produto.nome}">
+          <div class="info-item">
+            <span class="nome">${produto.nome}</span>
+            <span class="preco">R$ ${Number(produto.preco).toFixed(2)}</span>
+          </div>
+          <button class="remover" onclick="removerItem(${index})">Remover</button>
         `;
+
         container.appendChild(item);
-        total += produto.preco;
+        total += Number(produto.preco);
       });
 
       totalEl.textContent = `💰 Total: R$ ${total.toFixed(2)}`;
     }
 
+    // =====================================
+    // 🔹 Controle de ações
+    // =====================================
     function removerItem(index) {
-      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const carrinho = obterCarrinho();
       carrinho.splice(index, 1);
-      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      salvarCarrinho(carrinho);
       atualizarCarrinho();
     }
 
-    limparBtn.addEventListener('click', () => {
+    function limparCarrinho() {
       localStorage.removeItem('carrinho');
       atualizarCarrinho();
-    });
+    }
 
-    atualizarCarrinho();
+    // =====================================
+    // 🔹 Envio do pedido via WhatsApp
+    // =====================================
+    function enviarResumoWhatsApp() {
+      const carrinho = obterCarrinho();
+
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+
+      const usuario = obterUsuario();
+      const primeiroNome = usuario?.nome?.trim().split(' ')[0] || 'cliente';
+      const numeroLoja = '5544988557658';
+
+      let mensagem = `✨ Olá ${primeiroNome}! Aqui está o resumo do seu carrinho na *Rafa Joias Folheadas*:\n\n`;
+
+      carrinho.forEach((item, i) => {
+        mensagem += `${i + 1}. ${item.nome} — R$ ${item.preco.toFixed(2)}\n`;
+      });
+
+      const total = carrinho.reduce((acc, item) => acc + item.preco, 0);
+      mensagem += `\n💎 *Total:* R$ ${total.toFixed(2)}\n\nClique em enviar para finalizar seu pedido 💖`;
+
+      const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+
+    // =====================================
+    // 🔹 Inicialização
+    // =====================================
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('limpar').addEventListener('click', limparCarrinho);
+      document.getElementById('enviar-whatsapp').addEventListener('click', enviarResumoWhatsApp);
+      atualizarCarrinho();
+    });
   </script>
 </body>
 </html>
